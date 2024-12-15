@@ -1,54 +1,54 @@
 import React, { useState } from 'react'
+import Leave from '../Leave/Leave'
 
 export default function Home() {
 
-  let x = 10 ;
-  // let userName = 'Dina';
-  let obj ={
-    name: 'sara',
-    age:23
-  }
+  let [count , setCount]=useState(0)
+  let [products , setProduct] = useState([
+    {pname: 'iphone' , price: 5000000 , id: 255 , onSale: true, count: 4},
+    {pname: 'samsung' , price: 40000 , id: 55 , onSale: false, count: 4},
+    {pname: 'nokia' , price: 500 , id: 25 , onSale: true, count: 4},
+  ])
+
+    {/*delete function*/}
+
+    //or idx
+    function Deleteprod(id){
+
+      let newProducts = structuredClone(products)
+      let newArr = newProducts.filter((prod)=>{return prod.id !== id})
+      setProduct(newArr)
 
 
-  // useState(0)
-  // let [count , setCount] = useState(0) //use state return value and the updated function
-  // setCount(count*10)
+      // console.log('delete', idx);
+     
+      // products.splice(idx , 1)  //to delete sth from array with index way
+      // let newArr = products.filter((prod)=>{return prod.id !== id})
+      // console.log('delete', id);
+    }
 
-let [count , setCount] = useState(0)
+    function updateProd(idx){
 
-let [userName , setuserName] = useState('sara')
+      let newProd= structuredClone(products)
+      newProd[idx].count+=1
 
-function changeCount(){
-setCount(count++)
-}
+      setProduct(newProd)
+      console.log('update', idx);
+      
+    }
 
-function changeName(){
-  setuserName('dina')
-  }
-  
-
-
-  //   let count = 0 ;
-  // function changeCount(y){
-  //   count+=1;
-  //   console.log('change' , y);
-// }
 
   return <>
-
-  <h2>Home page</h2>
-  <h3>x = {x} </h3>
-  {/* <h3>hello {userName} </h3> */}
-  {/* <h4>Name: {obj.name}</h4>
-  <h4>age: {obj.age}</h4> */}
-
-  <h4>username: {userName}</h4>
-  <h4>Count: {count}</h4>
-
-  <button onClick={changeCount} className='bg-blue-500'>change count</button> <br /> <br />
-  <button onClick={changeName} className='bg-blue-500'>change Name</button>
-  {/* <button onClick={()=>{changeCount(5)}} className='bg-blue-500'>change count</button> */}
-
+  <h2>new product from leave page </h2>
+<div className='flex flex-wrap'>
+{
+  //map is like for loop
+  products.map((products, index)=>{
+    // return <Leave idx={index} Deleteprod={Deleteprod} prod={products}/>
+    return <Leave key={products.id} idx={index} updateProd={updateProd} Deleteprod={Deleteprod} prod={products}/>
+  })
+}
+</div>
 
   </>
 
