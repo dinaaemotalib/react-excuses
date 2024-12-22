@@ -9,13 +9,14 @@ import Leave from './Components/Leave/Leave'
 function App() {
   const [count, setCount] = useState(0)
 
-  return (
-    <>
-     <Home/> {/*this is the parent*/}
+  return <>
+     {/* <Home/>  */}   {/*this is the parent*/}
+     <Excuse/>
 
 
     </>
-  )
+    
+  
 }
 
 export default App

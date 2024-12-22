@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Leave from '../Leave/Leave'
 
 export default function Home() {
+
+  
 
   let [count , setCount]=useState(0)
   let [products , setProduct] = useState([
